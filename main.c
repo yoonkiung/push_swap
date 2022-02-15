@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/08 11:21:02 by kiyoon            #+#    #+#             */
+/*   Updated: 2022/02/08 12:40:58 by kiyoon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "header.h"
+#include <stdio.h>
+
+int	main(int ac, char **av)
+{
+	t_deque	deq_a;
+
+	if (!input(ac, av, &deq_a))
+		return (0);
+	while (!dequeisempty(&deq_a))
+		printf("%d ", dqremovelast(&deq_a));
+	return (0);
+}
