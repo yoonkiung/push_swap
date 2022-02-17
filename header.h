@@ -58,12 +58,20 @@ int		dqgetlast(t_deque *pdeq);
 
 void	dqfreeall(t_deque *pdeq);
 
-void	swap(t_deque *pdeq);
+void	swap(t_deque *pdeq, char *str);
 
-void	push(t_deque *a, t_deque *b);
+void	push(t_deque *a, t_deque *b, char *str);
 
-int		rotate(t_deque *deq);
+int		rotate(t_deque *deq, char *str);
 
-int		reverse_rotate(t_deque *deq);
+int		reverse_rotate(t_deque *deq, char *str);
+
+int		size(t_deque *pdeq);
+
+void	back_to_origin(t_deque *deq, int ra, char *str);
+
+void	q_sort_a(t_deque *a, t_deque *b, int len);
+
+void	q_sort_b(t_deque *a, t_deque *b, int len);
 
 #endif

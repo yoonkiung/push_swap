@@ -6,7 +6,7 @@
 #    By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/08 11:12:01 by kiyoon            #+#    #+#              #
-#    Updated: 2022/02/09 15:06:09 by kiyoon           ###   ########.fr        #
+#    Updated: 2022/02/17 14:30:59 by kiyoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT       = libft
 
 LIBFT_LIB   = libft.a
 
-SRCS        = ./main.c ./deque1.c ./deque2.c ./input.c ./instruction.c
+SRCS        = ./main.c ./deque1.c ./deque2.c ./input.c ./instruction.c ./sort.c
 
 OBJS        = $(SRCS:.c=.o)
 
@@ -28,7 +28,7 @@ LIBC        = ar rc
 
 CC          = gcc
 
-CFLAGS      = -Wall -Wextra -Werror
+CFLAGS      = -Wall -Wextra -Werror -fsanitize=address -g3
 
 $(NAME) : $(OBJS)
 	make all -C $(LIBFT)/
