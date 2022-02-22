@@ -16,7 +16,7 @@ LIBFT       = libft
 
 LIBFT_LIB   = libft.a
 
-SRCS        = ./main.c ./deque1.c ./deque2.c ./input.c ./instruction.c ./sort.c
+SRCS        = ./main.c ./deque1.c ./deque2.c ./input.c ./instruction.c ./sort1.c ./sort2.c ./sort3.c
 
 OBJS        = $(SRCS:.c=.o)
 

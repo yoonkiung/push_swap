@@ -14,7 +14,8 @@
 # define HEADER_H
 
 # include "./libft/libft.h"
-
+# include <stdio.h>//need delete
+# include <limits.h>
 # define TRUE 1
 
 # define FALSE 0
@@ -60,9 +61,9 @@ void	dqfreeall(t_deque *pdeq);
 
 void	swap(t_deque *pdeq, char *str);
 
-void	push(t_deque *a, t_deque *b, char *str);
+void	push(t_deque *a, t_deque *b, char *str, int *count);
 
-int		rotate(t_deque *deq, char *str);
+int		rotate(t_deque *deq, char *str, int	*count);
 
 int		reverse_rotate(t_deque *deq, char *str);
 
@@ -73,5 +74,19 @@ void	back_to_origin(t_deque *deq, int ra, char *str);
 void	q_sort_a(t_deque *a, t_deque *b, int len);
 
 void	q_sort_b(t_deque *a, t_deque *b, int len);
+
+void	get_list_all(t_deque *pdeq);
+
+void	lenistwo(t_deque *a, char *str, int dep);
+
+void	pushonlyleast(t_deque *a, t_deque *b);
+
+void	lenisthree(t_deque *a, t_deque *b);
+
+int	find_min_max(t_deque *a, int dep);
+
+void	lenisfive(t_deque *a, t_deque *b);
+
+void	sort_five_last(t_deque *a, t_deque *b);
 
 #endif

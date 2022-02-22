@@ -24,7 +24,7 @@ void	swap(t_deque *pdeq, char *str)
 	ft_putstr_fd(str, 1);
 }
 
-void	push(t_deque *a, t_deque *b, char *str)
+void	push(t_deque *a, t_deque *b, char *str, int *count)
 {
 	int	temp;
 
@@ -34,9 +34,10 @@ void	push(t_deque *a, t_deque *b, char *str)
 	dqremovelast(a);
 	dqaddlast(b, temp);
 	ft_putstr_fd(str, 1);
+	(*count)++;
 }
 
-int	rotate(t_deque *deq, char *str)
+int	rotate(t_deque *deq, char *str, int	*count)
 {
 	int	temp;
 
@@ -47,6 +48,7 @@ int	rotate(t_deque *deq, char *str)
 		return (0);
 	dqremovelast(deq);
 	ft_putstr_fd(str, 1);
+	(*count)++;
 	return (1);
 }
 
