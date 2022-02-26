@@ -71,3 +71,20 @@ int	dqaddlast(t_deque *pdeq, int data)
 	pdeq->tail = newnode;
 	return (1);
 }
+
+int	deq_len(t_deque *deq)
+{
+	t_node	*temp;
+	int		i;
+
+	if (!deq)
+		return (0);
+	temp = deq->head;
+	i = 0;
+	while (temp)
+	{
+		i++;
+		temp = temp->next;
+	}
+	return (i);
+}

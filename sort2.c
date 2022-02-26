@@ -64,7 +64,7 @@ void	lenisthree(t_deque *a, t_deque *b)
 	push(b, a, "pa\n", &empty);
 }
 
-int	find_min_max(t_deque *a, int dep)
+int	find_min_max(t_deque *a, int dep, int len)
 {
 	int		ans;
 	int		i;
@@ -75,7 +75,7 @@ int	find_min_max(t_deque *a, int dep)
 	if (dep == 1)
 	{
 		ans = INT_MIN;
-		while (i++ < 5)
+		while (i++ < len)
 		{
 			if (ans < temp->data)
 				ans = temp->data;
@@ -84,7 +84,7 @@ int	find_min_max(t_deque *a, int dep)
 		return (ans);
 	}
 	ans = INT_MAX;
-	while (i++ < 5)
+	while (i++ < len)
 	{
 		if (ans > temp->data)
 			ans = temp->data;
@@ -102,8 +102,8 @@ void	lenisfive(t_deque *a, t_deque *b)
 
 	empty = 0;
 	i = 0;
-	max = find_min_max(a, 1);
-	min = find_min_max(a, 0);
+	max = find_min_max(a, 1, 5);
+	min = find_min_max(a, 0, 5);
 	while (i++ < 5)
 	{
 		if (a->tail->data == min || a->tail->data == max)

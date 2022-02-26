@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   input2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 11:21:02 by kiyoon            #+#    #+#             */
-/*   Updated: 2022/02/08 12:40:58 by kiyoon           ###   ########.fr       */
+/*   Created: 2022/02/26 21:56:36 by kiyoon            #+#    #+#             */
+/*   Updated: 2022/02/26 21:56:37 by kiyoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
-int	main(int ac, char **av)
+int	travel_bintree(t_deque *deq, int *map, int empty)
 {
-	t_deque	deq_a;
-	t_deque	deq_b;
+	int		index;
+	t_node	*temp;
 
-	if (!input(ac, av, &deq_a))
-		return (0);
-	dequeinit(&deq_b);
-	q_sort_a(&deq_a, &deq_b, size(&deq_a));
-	printf("a : ");
-	while (!dequeisempty(&deq_a))
-		printf("%d ",dqremovelast(&deq_a));
-	printf("\nb : ");
-	while (!dequeisempty(&deq_a))
-		printf("%d ", dqremovelast(&deq_a));
-	return (0);
+	temp = deq->head;
+	while (temp)
+	{
+		index = 1;
+		while (map[index] != empty)
+		{
+			if (map[index] < temp->data)
+				index = index * 2;
+			else if (map[index] > temp->data)
+				index = index * 2 + 1;
+			else
+				return (0);
+		}
+		map[index] = temp->data;
+		temp = temp->next;
+	}
+	return (1);
 }

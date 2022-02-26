@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   input1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -57,7 +57,11 @@ int	input(int ac, char **av, t_deque *deq)
 		if (check_error(av[i]))
 		{	
 			if (!dqaddfirst(deq, ft_atoi(av[i])))
+			{
 				dqfreeall(deq);
+				ft_putstr_fd("Error", 1);
+				return (0);
+			}
 		}
 		else
 		{
@@ -67,5 +71,25 @@ int	input(int ac, char **av, t_deque *deq)
 		}
 		i++;
 	}
+	return (1);
+}
+
+int	is_all_diff(t_deque *deq)
+{
+	int	*map;
+	int	index;
+	int	min;
+	int	len;
+
+	len = deq_len(deq);
+	map = (int *)malloc(sizeof(int) * (len + 1));
+	if (!map)
+		return (0);
+	index = 1;
+	min = find_min_max(deq, 0, len);
+	while (index < len + 1)
+		map[index] = min - 1;
+	if (!travel_bintree(deq, map, min - 1))
+		return (0);
 	return (1);
 }

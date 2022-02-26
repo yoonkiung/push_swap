@@ -41,6 +41,8 @@ int		check_error(char *str);
 
 int		input(int ac, char **av, t_deque *deq);
 
+int		travel_bintree(t_deque *deq, int *map, int empty);
+
 void	dequeinit(t_deque *pdeq);
 
 int		dequeisempty(t_deque *pdeq);
@@ -58,6 +60,8 @@ int		dqgetfirst(t_deque *pdeq);
 int		dqgetlast(t_deque *pdeq);
 
 void	dqfreeall(t_deque *pdeq);
+
+int		deq_len(t_deque *deq);
 
 void	swap(t_deque *pdeq, char *str);
 
@@ -83,7 +87,7 @@ void	pushonlyleast(t_deque *a, t_deque *b);
 
 void	lenisthree(t_deque *a, t_deque *b);
 
-int	find_min_max(t_deque *a, int dep);
+int		find_min_max(t_deque *a, int dep, int len);
 
 void	lenisfive(t_deque *a, t_deque *b);
 
