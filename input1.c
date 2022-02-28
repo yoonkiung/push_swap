@@ -84,12 +84,20 @@ int	is_all_diff(t_deque *deq)
 	len = deq_len(deq);
 	map = (int *)malloc(sizeof(int) * (len + 1));
 	if (!map)
+	{
+		ft_putstr_fd("Error\n", 1);
+		dqfreeall(deq);
 		return (0);
+	}
 	index = 1;
 	min = find_min_max(deq, 0, len);
 	while (index < len + 1)
-		map[index] = min - 1;
+		map[index++] = min - 1;
 	if (!travel_bintree(deq, map, min - 1))
+	{
+		ft_putstr_fd("Error\n", 1);
+		dqfreeall(deq);
 		return (0);
+	}
 	return (1);
 }

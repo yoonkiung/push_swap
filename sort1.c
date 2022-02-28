@@ -12,96 +12,68 @@
 
 #include "header.h"
 
-void	get_list_all(t_deque *pdeq)
+int	choose_pivot(t_deque *deq, int len, int *big_pivot, int *small_pivot)
 {
 	t_node	*temp;
+	int		i;
+	int		*arr;
 
-	if (dequeisempty(pdeq))
-		return ;
-	temp = pdeq->tail;
-	while (temp != pdeq->head)
+	arr = (int *)malloc(sizeof(int) * len);
+	if (!arr)
+		return (0);
+	i = 0;
+	temp = deq->tail;
+	while (i < len)
 	{
-		printf("%d ", temp->data);
+		arr[i++] = temp->data;
 		temp = temp->prev;
 	}
-	printf("%d ", temp->data);
-}
-
-void	back_to_origin(t_deque *deq, int ra, char *str)
-{
-	int	i;
-
-	i = 0;
-	while (i < ra)
-	{
-		reverse_rotate(deq, str);
-		i++;
-	}
+	quicksort(arr, 0, len - 1);
+	*small_pivot = arr[len / 3];
+	*big_pivot = arr[(len / 3) * 2];
+	free(arr);
+	return (1);
 }
 
 void	q_sort_a(t_deque *a, t_deque *b, int len)
 {
-	int	pivot;
-	int	i;
-	int	ra;
-	int	pb;
-
-	pb = 0;
-	ra = 0;
-	i = 0;
-	if (len == 0)
-		return ;
-	if (len == 1 || len == 2)
+	if (len <= 2 || len == 3 || len == 5)
 	{
-		if (len == 1)
-			return ;
-		lenistwo(a, "sa\n", 1);
+		if (len == 2)
+			lenistwo(a, "sa\n", 1);
+		if (len == 3)
+			lenisthree(a, b);
+		if (len == 5)
+			lenisfive(a, b);
 		return ;
 	}
-	/*f (len == 5)
-	{
-		lenisfive(a, b);
-		return ;
-	}*/
-	pivot = a->tail->data;
-	while (i++ < len)
-	{
-		if (a->tail->data > pivot)
-			rotate(a, "ra\n", &ra);
-		else
-			push(a, b, "pb\n", &pb);
-	}
-	back_to_origin(a, ra, "rra\n");
-	q_sort_a(a, b, ra);
-	q_sort_b(a, b, pb);
+	do_instruct_a(a, b, len);
 }
 
 void	q_sort_b(t_deque *a, t_deque *b, int len)
 {
-	int	pivot;
-	int	i;
-	int	rb;
-	int	pa;
+	int	empty;
 
-	pa = 0;
-	rb = 0;
-	i = 0;
-	if (len == 0)
-		return ;
-	if (len == 1)
+	empty = 0;
+	if (len <= 2)
 	{
-		push(b, a, "pa\n", &pa);
+		if (len == 2)
+		{
+			lenistwo(b, "sb\n", 0);
+			push(b, a, "pa\n", &empty);
+			push(b, a, "pa\n", &empty);
+		}
+		else if (len == 1)
+			push(b, a, "pa\n", &empty);
 		return ;
 	}
-	pivot = b->tail->data;
-	while (i++ < len)
+	if (len == 3)
 	{
-		if (b->tail->data <= pivot)
-			rotate(b, "rb\n", &rb);
-		else
-			push(b, a, "pa\n", &pa);
+		lenisthree_reverse(a, b);
+		push(b, a, "pa\n", &empty);
+		push(b, a, "pa\n", &empty);
+		push(b, a, "pa\n", &empty);
+		return ;
 	}
-	back_to_origin(b, rb, "rrb\n");
-	q_sort_a(a, b, pa);
-	q_sort_b(a, b, rb);
+	do_instruct_b(a, b, len);
 }

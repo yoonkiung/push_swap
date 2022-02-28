@@ -41,7 +41,11 @@ int		check_error(char *str);
 
 int		input(int ac, char **av, t_deque *deq);
 
+int		is_all_diff(t_deque *deq);
+
 int		travel_bintree(t_deque *deq, int *map, int empty);
+
+void	when_error(t_deque *a, t_deque *b);
 
 void	dequeinit(t_deque *pdeq);
 
@@ -71,15 +75,15 @@ int		rotate(t_deque *deq, char *str, int	*count);
 
 int		reverse_rotate(t_deque *deq, char *str);
 
+int		reverse_rotate_double(t_deque *a, t_deque *b, char *str);
+
 int		size(t_deque *pdeq);
 
-void	back_to_origin(t_deque *deq, int ra, char *str);
+int		choose_pivot(t_deque *deq, int len, int *big_pivot, int *small_pivot);
 
 void	q_sort_a(t_deque *a, t_deque *b, int len);
 
 void	q_sort_b(t_deque *a, t_deque *b, int len);
-
-void	get_list_all(t_deque *pdeq);
 
 void	lenistwo(t_deque *a, char *str, int dep);
 
@@ -92,5 +96,23 @@ int		find_min_max(t_deque *a, int dep, int len);
 void	lenisfive(t_deque *a, t_deque *b);
 
 void	sort_five_last(t_deque *a, t_deque *b);
+
+void	do_reverse(t_deque *a, t_deque *b, int ra, int rb);
+
+void	init_variable(int *a, int *b, int *c);
+
+void	do_instruct_a(t_deque *a, t_deque *b, int len);
+
+void	do_instruct_b(t_deque *a, t_deque *b, int len);
+
+void	pushonlymax(t_deque *a, t_deque *b);
+
+void	lenisthree_reverse(t_deque *a, t_deque *b);
+
+void	swap_arr(int arr[], int a, int b);
+
+int		partition(int arr[], int left, int right);
+
+void	quicksort(int arr[], int left, int right);
 
 #endif

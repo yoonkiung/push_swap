@@ -116,6 +116,5 @@ void	lenisfive(t_deque *a, t_deque *b)
 		reverse_rotate(a, "rra\n");
 	lenistwo(b, "sb\n", 0);
 	lenisthree(a, b);
-	rotate(b, "rb\n", &empty);
 	sort_five_last(a, b);
 }

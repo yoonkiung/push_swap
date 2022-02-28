@@ -23,9 +23,9 @@ int	travel_bintree(t_deque *deq, int *map, int empty)
 		index = 1;
 		while (map[index] != empty)
 		{
-			if (map[index] < temp->data)
+			if (map[index] > temp->data)
 				index = index * 2;
-			else if (map[index] > temp->data)
+			else if (map[index] < temp->data)
 				index = index * 2 + 1;
 			else
 				return (0);
@@ -34,4 +34,12 @@ int	travel_bintree(t_deque *deq, int *map, int empty)
 		temp = temp->next;
 	}
 	return (1);
+}
+
+void	when_error(t_deque *a, t_deque *b)
+{
+	ft_putstr_fd("Error\n", 1);
+	dqfreeall(a);
+	dqfreeall(b);
+	exit(1);
 }
