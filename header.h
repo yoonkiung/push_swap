@@ -109,6 +109,8 @@ void	pushonlymax(t_deque *a, t_deque *b);
 
 void	lenisthree_reverse(t_deque *a, t_deque *b);
 
+void	rotate_if_diff(t_deque *a, t_deque *b, int ra, int rb);
+
 void	swap_arr(int arr[], int a, int b);
 
 int		partition(int arr[], int left, int right);

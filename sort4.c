@@ -50,3 +50,21 @@ void	lenisthree_reverse(t_deque *a, t_deque *b)
 	lenistwo(b, "sb\n", 0);
 	push(a, b, "pb\n", &empty);
 }
+
+void	rotate_if_diff(t_deque *a, t_deque *b, int ra, int rb)
+{
+	while (ra > 0 && rb > 0)
+	{
+		reverse_rotate_double(a, b, "rrr\n");
+		ra--;
+		rb--;
+	}
+	if (ra == 0 && rb == 0)
+		return ;
+	else if (ra > 0)
+		while (ra-- > 0)
+			reverse_rotate(a, "rra\n");
+	else
+		while (rb-- > 0)
+			reverse_rotate(b, "rrb\n");
+}

@@ -30,21 +30,24 @@ void	sort_five_last(t_deque *a, t_deque *b)
 
 void	do_reverse(t_deque *a, t_deque *b, int ra, int rb)
 {
-	while (ra > 0 && rb > 0)
+	int	len_a;
+	int	len_b;
+
+	len_a = deq_len(a);
+	len_b = deq_len(b);
+	if (len_a == ra || len_b == rb)
 	{
-		reverse_rotate_double(a, b, "rrr\n");
-		ra--;
-		rb--;
-	}
-	if (ra == 0 && rb == 0)
+		if (len_a == ra && len_b == rb)
+			return ;
+		else if (len_a == ra)
+			while (rb-- > 0)
+				reverse_rotate(b, "rrb\n");
+		else
+			while (ra-- > 0)
+				reverse_rotate(a, "rra\n");
 		return ;
-	else if (ra > 0)
-		while (ra-- > 0)
-			reverse_rotate(a, "rra\n");
-	else
-		while (rb-- > 0)
-			reverse_rotate(b, "rrb\n");
-	return ;
+	}
+	rotate_if_diff(a, b, ra, rb);
 }
 
 void	init_variable(int *a, int *b, int *c)
