@@ -6,7 +6,7 @@
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:21:02 by kiyoon            #+#    #+#             */
-/*   Updated: 2022/02/08 12:40:58 by kiyoon           ###   ########.fr       */
+/*   Updated: 2022/02/28 23:57:49 by kiyoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	main(int ac, char **av)
 
 	if (!input(ac, av, &deq_a))
 		return (0);
-	//printf("origin : ");
-	//while (!dequeisempty(&deq_a))
-	//	printf("%d ",dqremovelast(&deq_a));
-	//return (0);
-	/*if (!is_all_diff(&deq_a))
+	/*printf("origin : ");
+	while (!dequeisempty(&deq_a))
+		printf("%d ",dqremovelast(&deq_a));
+	return (0);
+	if (!is_all_diff(&deq_a))
 		return (0);*/
 	dequeinit(&deq_b);
 	len = deq_len(&deq_a);
@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 	while (!dequeisempty(&deq_a))
 		printf("%d ",dqremovelast(&deq_a));
 	printf("\nb : ");
-	while (!dequeisempty(&deq_a))
-		printf("%d ", dqremovelast(&deq_a));
+	while (!dequeisempty(&deq_b))
+		printf("%d ", dqremovelast(&deq_b));
 	return (0);
 }

@@ -103,7 +103,7 @@ void	do_instruct_b(t_deque *a, t_deque *b, int len)
 		else
 		{
 			push(b, a, "pa\n", &pa);
-			if (dqgetlast(b) < big_pivot)
+			if (dqgetlast(a) < big_pivot)
 				rotate(a, "ra\n", &ra);
 		}
 	}

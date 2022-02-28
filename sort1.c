@@ -37,7 +37,7 @@ int	choose_pivot(t_deque *deq, int len, int *big_pivot, int *small_pivot)
 
 void	q_sort_a(t_deque *a, t_deque *b, int len)
 {
-	if (len <= 2 || len == 3 || len == 5)
+	if (len <= 2 /*|| len == 3 || len == 5*/)
 	{
 		if (len == 2)
 			lenistwo(a, "sa\n", 1);
@@ -67,13 +67,13 @@ void	q_sort_b(t_deque *a, t_deque *b, int len)
 			push(b, a, "pa\n", &empty);
 		return ;
 	}
-	if (len == 3)
+	/*if (len == 3)
 	{
 		lenisthree_reverse(a, b);
 		push(b, a, "pa\n", &empty);
 		push(b, a, "pa\n", &empty);
 		push(b, a, "pa\n", &empty);
 		return ;
-	}
+	}*/
 	do_instruct_b(a, b, len);
 }
