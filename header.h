@@ -47,6 +47,10 @@ int		travel_bintree(t_deque *deq, int *map, int empty);
 
 void	when_error(t_deque *a, t_deque *b);
 
+int		input_normal_case(int ac, char **av, t_deque *deq);
+
+int		input_ac_is_1(char **av, t_deque *deq);
+
 void	dequeinit(t_deque *pdeq);
 
 int		dequeisempty(t_deque *pdeq);
@@ -110,6 +114,8 @@ void	pushonlymax(t_deque *a, t_deque *b);
 void	lenisthree_reverse(t_deque *a, t_deque *b);
 
 void	rotate_if_diff(t_deque *a, t_deque *b, int ra, int rb);
+
+int		already_sorted(t_deque *deq, int len);
 
 void	swap_arr(int arr[], int a, int b);
 

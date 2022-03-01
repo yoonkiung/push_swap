@@ -12,101 +12,104 @@
 
 #include "libft.h"
 
-static int	splitnum(char const *s, char c)
+bool	is_in(char c, char *set)
 {
-	int	i;
-	int	count;
+	while (true)
+	{
+		if (*set == '\0')
+			return (c == '\0');
+		if (*set == c)
+			return (true);
+		set++;
+	}
+	return (false);
+}
 
-	i = 0;
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int	index;
+
+	index = 0;
+	while (index < n && src[index] != '\0')
+	{
+		dest[index] = src[index];
+		index++;
+	}
+	while (index < n)
+	{
+		dest[index] = '\0';
+		index++;
+	}
+	return (dest);
+}
+
+int	count_occur(char *str, char *charset)
+{
+	 int	count;
+	char	*previous;
+	char	*next;
+	char	*save_start;
+
 	count = 0;
-	while (s[i] == c)
-		i++;
-	while (s[i])
+	previous = str;
+	next = str;
+	save_start = str;
+	while (true)
 	{
-		if (s[i] == c && s[i + 1] != c)
+		if (is_in(*str, charset))
+			next = str;
+		if (previous == save_start && next - previous == 1
+			&& !is_in(*previous, charset))
 			count++;
-		i++;
+		if (next - previous > 1)
+			count++;
+		if (*str == '\0')
+			break ;
+		previous = next;
+		str++;
 	}
-	if (s[i - 1] == c)
-		count--;
-	return (count + 1);
+	return (count);
 }
 
-static char	**ft_free(char **s)
+int	add_part(char **entry, char *previous, int size, char *charset)
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	if (is_in(previous[0], charset))
 	{
-		free(s[i]);
-		i++;
+		previous++;
+		size--;
 	}
-	free(s);
-	return (NULL);
-}
-
-static int	check_start(char **temp, char const *s, int i, int start)
-{
-	*temp = (char *)malloc(sizeof(char) * (i - start + 1));
-	if (!*temp)
-		return (0);
-	ft_strlcpy(*temp, &s[start], i - start + 1);
+	*entry = (char *)malloc(sizeof(char) * (size + 1));
+	ft_strncpy(*entry, previous, size);
+	(*entry)[size] = '\0';
+	(*entry)[size + 1] = '\0';
 	return (1);
 }
 
-static int	toput(char **temp, char const *s, char c)
+char	**ft_split(char *str, char *charset)
 {
-	int	i;
-	int	start;
+	 int	i;
+	char	*previous;
+	char	*next;
+	char	**array;
 
+	array = (char **)malloc(sizeof(char *) * (count_occur(str, charset) + 1));
 	i = 0;
-	while (s[i] && s[i] == c)
-		i++;
-	start = i;
-	while (s[i])
+	previous = str;
+	next = str;
+	while (true)
 	{
-		if (s[i] == c)
-		{
-			*temp = (char *)malloc(sizeof(char) * (i - start + 1));
-			if (!*temp)
-				return (0);
-			ft_strlcpy(*temp++, &s[start], i - start + 1);
-			while (s[i] == c)
-				i++;
-			start = i--;
-		}
-		i++;
+		if (is_in(*str, charset))
+			next = str;
+		if (i == 0 && next - previous == 1
+			&& !is_in(*previous, charset))
+			i += add_part(&array[i], previous, next - previous, charset);
+		if (next - previous > 1)
+			i += add_part(&array[i], previous, next - previous, charset);
+		if (*(str) == '\0')
+			break ;
+		previous = next;
+		str++;
 	}
-	if (s[start] && !check_start(temp++, s, i, start))
-		return (0);
-	return (1);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**set;
-	char	**temp;
-	int		i;
-
-	if (!s)
-		return (NULL);
-	if (!*s)
-	{
-		set = (char **)ft_calloc(1, sizeof(char *));
-		if (!set)
-			return (NULL);
-		return (set);
-	}
-	set = (char **)ft_calloc(splitnum(s, c) + 1, sizeof(char *));
-	if (!set)
-		return (NULL);
-	temp = set;
-	i = 0;
-	if (!toput(temp, s, c))
-	{
-		ft_free(set);
-		return (NULL);
-	}
-	return (set);
+	array[i] = 0;
+	return (array);
 }

@@ -43,3 +43,45 @@ void	when_error(t_deque *a, t_deque *b)
 	dqfreeall(b);
 	exit(1);
 }
+
+int	input_normal_case(int ac, char **av, t_deque *deq)
+{
+	int	i;
+
+	i = 1;
+	dequeinit(deq);
+	while (i < ac)
+	{
+		if (check_error(av[i]))
+		{	
+			if (!dqaddfirst(deq, ft_atoi(av[i])))
+			{
+				dqfreeall(deq);
+				ft_putstr_fd("Error", 1);
+				return (0);
+			}
+		}
+		else
+		{
+			ft_putstr_fd("Error", 1);
+			dqfreeall(deq);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	input_ac_is_1(char **av, t_deque *deq)
+{
+	char	**split;
+	int		i;
+
+	i = 0;
+	split = ft_split(*av, "\t\n\v\f\r ");
+	if (!split)
+		return (0);
+	while (split[i])
+		i++;
+	return (input_normal_case(i, split, deq));
+}

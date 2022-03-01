@@ -11,24 +11,21 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
 
 int	main(int ac, char **av)
 {
 	t_deque	deq_a;
 	t_deque	deq_b;
-	int		len;
 
 	if (!input(ac, av, &deq_a))
 		return (0);
 	/*printf("origin : ");
 	while (!dequeisempty(&deq_a))
 		printf("%d ",dqremovelast(&deq_a));
-	return (0);
-	if (!is_all_diff(&deq_a))
-		return (0);*/
+	return (0);*/
 	dequeinit(&deq_b);
-	len = deq_len(&deq_a);
+	if (!is_all_diff(&deq_a))
+		when_error(&deq_a, &deq_b);
 	q_sort_a(&deq_a, &deq_b, size(&deq_a));
 	printf("a : ");
 	while (!dequeisempty(&deq_a))

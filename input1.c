@@ -19,7 +19,7 @@ int	is_all_digit(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (i == 0 && str[i] == '-')
+		if (i == 0 && (str[i] == '-' || str[i] == '+'))
 			i++;
 		if (str[i] < '0' || str[i] > '9')
 			return (0);
@@ -30,7 +30,7 @@ int	is_all_digit(char *str)
 
 int	isin_dec(char *str)
 {
-	if (ft_strncmp(str, "1", 20) == 0 || ft_strncmp(str, "-1", 20) == 0)
+	if (ft_strncmp(str, "0", 20) == 0 || ft_strncmp(str, "-1", 20) == 0)
 		return (1);
 	if (ft_atoi(str) == 0 || ft_atoi(str) == -1)
 		return (0);
@@ -48,56 +48,45 @@ int	check_error(char *str)
 
 int	input(int ac, char **av, t_deque *deq)
 {
-	int	i;
-
-	i = 1;
-	dequeinit(deq);
-	while (i < ac)
+	if (ac == 1)
 	{
-		if (check_error(av[i]))
-		{	
-			if (!dqaddfirst(deq, ft_atoi(av[i])))
-			{
-				dqfreeall(deq);
-				ft_putstr_fd("Error", 1);
-				return (0);
-			}
-		}
-		else
-		{
-			ft_putstr_fd("Error", 1);
-			dqfreeall(deq);
+		if (!input_ac_is_1(av, deq))
 			return (0);
-		}
-		i++;
+	}
+	else
+	{
+		if (!input_normal_case(ac, av, deq))
+			return (0);
 	}
 	return (1);
 }
 
 int	is_all_diff(t_deque *deq)
 {
-	int	*map;
-	int	index;
-	int	min;
-	int	len;
+	int		len;
+	int		*arr;
+	int		i;
+	t_node	*temp;
 
-	len = deq_len(deq);
-	map = (int *)malloc(sizeof(int) * (len + 1));
-	if (!map)
-	{
-		ft_putstr_fd("Error\n", 1);
-		dqfreeall(deq);
+	len = size(deq);
+	arr = (int *)malloc(sizeof(int) * len);
+	if (!arr)
 		return (0);
-	}
-	index = 1;
-	min = find_min_max(deq, 0, len);
-	while (index < len + 1)
-		map[index++] = min - 1;
-	if (!travel_bintree(deq, map, min - 1))
+	i = 0;
+	temp = deq->tail;
+	while (i < len)
 	{
-		ft_putstr_fd("Error\n", 1);
-		dqfreeall(deq);
-		return (0);
+		arr[i++] = temp->data;
+		temp = temp->prev;
 	}
-	return (1);
+	quicksort(arr, 0, len - 1);
+	i = 0;
+	while (i < len - 1)
+	{
+		if (arr[i] == arr[i + 1])
+			return (0);
+		i++;
+	}
+	free(arr);
+	return (0);
 }
