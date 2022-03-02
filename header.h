@@ -43,13 +43,15 @@ int		input(int ac, char **av, t_deque *deq);
 
 int		is_all_diff(t_deque *deq);
 
-int		travel_bintree(t_deque *deq, int *map, int empty);
-
 void	when_error(t_deque *a, t_deque *b);
 
 int		input_normal_case(int ac, char **av, t_deque *deq);
 
 int		input_ac_is_1(char **av, t_deque *deq);
+
+int		put_deq(int ac, char **av, t_deque *deq);
+
+void	insert_arr(int i, int len, int *arr, t_node *temp);
 
 void	dequeinit(t_deque *pdeq);
 
@@ -89,6 +91,8 @@ void	q_sort_a(t_deque *a, t_deque *b, int len);
 
 void	q_sort_b(t_deque *a, t_deque *b, int len);
 
+void	push_iter(t_deque *from, t_deque *to, char *str, int count);
+
 void	lenistwo(t_deque *a, char *str, int dep);
 
 void	pushonlyleast(t_deque *a, t_deque *b);
@@ -115,7 +119,7 @@ void	lenisthree_reverse(t_deque *a, t_deque *b);
 
 void	rotate_if_diff(t_deque *a, t_deque *b, int ra, int rb);
 
-int		already_sorted(t_deque *deq, int len);
+int		already_sorted(t_deque *deq, int len, int dep);
 
 void	swap_arr(int arr[], int a, int b);
 

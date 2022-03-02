@@ -48,7 +48,7 @@ int	check_error(char *str)
 
 int	input(int ac, char **av, t_deque *deq)
 {
-	if (ac == 1)
+	if (ac == 2)
 	{
 		if (!input_ac_is_1(av, deq))
 			return (0);
@@ -74,19 +74,18 @@ int	is_all_diff(t_deque *deq)
 		return (0);
 	i = 0;
 	temp = deq->tail;
-	while (i < len)
-	{
-		arr[i++] = temp->data;
-		temp = temp->prev;
-	}
+	insert_arr(i, len, arr, temp);
 	quicksort(arr, 0, len - 1);
 	i = 0;
 	while (i < len - 1)
 	{
 		if (arr[i] == arr[i + 1])
+		{
+			free(arr);
 			return (0);
+		}
 		i++;
 	}
 	free(arr);
-	return (0);
+	return (1);
 }

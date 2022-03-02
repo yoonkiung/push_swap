@@ -28,19 +28,20 @@ void	push(t_deque *a, t_deque *b, char *str, int *count)
 {
 	int	temp;
 
+	(*count)++;
 	if (dequeisempty(a))
 		return ;
 	temp = dqgetlast(a);
 	dqremovelast(a);
 	dqaddlast(b, temp);
 	ft_putstr_fd(str, 1);
-	(*count)++;
 }
 
 int	rotate(t_deque *deq, char *str, int	*count)
 {
 	int	temp;
 
+	(*count)++;
 	if (dequeisempty(deq) || deq->head == deq->tail)
 		return (1);
 	temp = dqgetlast(deq);
@@ -48,7 +49,6 @@ int	rotate(t_deque *deq, char *str, int	*count)
 		return (0);
 	dqremovelast(deq);
 	ft_putstr_fd(str, 1);
-	(*count)++;
 	return (1);
 }
 

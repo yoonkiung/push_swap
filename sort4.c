@@ -69,16 +69,28 @@ void	rotate_if_diff(t_deque *a, t_deque *b, int ra, int rb)
 			reverse_rotate(b, "rrb\n");
 }
 
-int	already_sorted(t_deque *deq, int len)
+int	already_sorted(t_deque *deq, int len, int dep)
 {
 	t_node	*temp;
 
 	temp = deq->tail;
-	while (len-- > 1)
+	if (dep == 1)
 	{
-		if (temp->data >= temp->prev->data)
-			return (0);
-		temp = temp->prev;
+		while (len-- > 1)
+		{
+			if (temp->data >= temp->prev->data)
+				return (0);
+			temp = temp->prev;
+		}
+	}
+	else
+	{
+		while (len-- > 1)
+		{
+			if (temp->data <= temp->prev->data)
+				return (0);
+			temp = temp->prev;
+		}
 	}
 	return (1);
 }

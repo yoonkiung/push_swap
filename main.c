@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 11:21:02 by kiyoon            #+#    #+#             */
-/*   Updated: 2022/02/28 23:57:49 by kiyoon           ###   ########.fr       */
+/*   Created: 2022/03/02 12:10:58 by kiyoon            #+#    #+#             */
+/*   Updated: 2022/03/02 12:24:27 by kiyoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,17 @@ int	main(int ac, char **av)
 
 	if (!input(ac, av, &deq_a))
 		return (0);
-	/*printf("origin : ");
-	while (!dequeisempty(&deq_a))
-		printf("%d ",dqremovelast(&deq_a));
-	return (0);*/
 	dequeinit(&deq_b);
 	if (!is_all_diff(&deq_a))
 		when_error(&deq_a, &deq_b);
 	q_sort_a(&deq_a, &deq_b, size(&deq_a));
-	printf("a : ");
+	dqfreeall(&deq_a);
+	dqfreeall(&deq_b);
+	/*printf("a : ");
 	while (!dequeisempty(&deq_a))
-		printf("%d ",dqremovelast(&deq_a));
+		printf("%d ", dqremovelast(&deq_a));
 	printf("\nb : ");
 	while (!dequeisempty(&deq_b))
 		printf("%d ", dqremovelast(&deq_b));
-	return (0);
+	return (0);*/
 }

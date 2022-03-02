@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/17 11:23:01 by kiyoon            #+#    #+#             */
-/*   Updated: 2022/02/17 11:23:02 by kiyoon           ###   ########.fr       */
+/*   Created: 2022/03/02 12:11:33 by kiyoon            #+#    #+#             */
+/*   Updated: 2022/03/02 12:11:35 by kiyoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	choose_pivot(t_deque *deq, int len, int *big_pivot, int *small_pivot)
 
 void	q_sort_a(t_deque *a, t_deque *b, int len)
 {
-	if (already_sorted(a, len))
+	if (already_sorted(a, len, 1))
 		return ;
 	if (len <= 2 || len == 3 || len == 5)
 	{
@@ -57,25 +57,35 @@ void	q_sort_b(t_deque *a, t_deque *b, int len)
 	int	empty;
 
 	empty = 0;
+	if (already_sorted(b, len, 0))
+	{
+		push_iter(b, a, "pa\n", len);
+		return ;
+	}
 	if (len <= 2)
 	{
 		if (len == 2)
 		{
 			lenistwo(b, "sb\n", 0);
-			push(b, a, "pa\n", &empty);
-			push(b, a, "pa\n", &empty);
+			push_iter(b, a, "pa\n", 2);
 		}
 		else if (len == 1)
 			push(b, a, "pa\n", &empty);
-		return ;
-	}
-	if (len == 3)
-	{
-		lenisthree_reverse(a, b);
-		push(b, a, "pa\n", &empty);
-		push(b, a, "pa\n", &empty);
-		push(b, a, "pa\n", &empty);
+		else if (len == 3)
+		{
+			lenisthree_reverse(a, b);
+			push_iter(b, a, "pa\n", 3);
+		}
 		return ;
 	}
 	do_instruct_b(a, b, len);
+}
+
+void	push_iter(t_deque *from, t_deque *to, char *str, int count)
+{
+	int	empty;
+
+	empty = 0;
+	while (count-- > 0)
+		push(from, to, str, &empty);
 }

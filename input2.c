@@ -12,30 +12,6 @@
 
 #include "header.h"
 
-int	travel_bintree(t_deque *deq, int *map, int empty)
-{
-	int		index;
-	t_node	*temp;
-
-	temp = deq->head;
-	while (temp)
-	{
-		index = 1;
-		while (map[index] != empty)
-		{
-			if (map[index] > temp->data)
-				index = index * 2;
-			else if (map[index] < temp->data)
-				index = index * 2 + 1;
-			else
-				return (0);
-		}
-		map[index] = temp->data;
-		temp = temp->next;
-	}
-	return (1);
-}
-
 void	when_error(t_deque *a, t_deque *b)
 {
 	ft_putstr_fd("Error\n", 1);
@@ -78,10 +54,49 @@ int	input_ac_is_1(char **av, t_deque *deq)
 	int		i;
 
 	i = 0;
-	split = ft_split(*av, "\t\n\v\f\r ");
+	split = ft_split(av[1], "\t\n\v\f\r ");
 	if (!split)
 		return (0);
 	while (split[i])
 		i++;
-	return (input_normal_case(i, split, deq));
+	i = put_deq(i, split, deq);
+	free(split);
+	return (i);
+}
+
+int	put_deq(int ac, char **av, t_deque *deq)
+{
+	int	i;
+
+	i = 0;
+	dequeinit(deq);
+	while (i < ac)
+	{
+		if (check_error(av[i]))
+		{	
+			if (!dqaddfirst(deq, ft_atoi(av[i])))
+			{
+				dqfreeall(deq);
+				ft_putstr_fd("Error", 1);
+				return (0);
+			}
+		}
+		else
+		{
+			ft_putstr_fd("Error", 1);
+			dqfreeall(deq);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	insert_arr(int i, int len, int *arr, t_node *temp)
+{
+	while (i < len)
+	{
+		arr[i++] = temp->data;
+		temp = temp->prev;
+	}
 }
