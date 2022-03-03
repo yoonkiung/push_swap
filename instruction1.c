@@ -26,30 +26,54 @@ void	swap(t_deque *pdeq, char *str)
 
 void	push(t_deque *a, t_deque *b, char *str, int *count)
 {
-	int	temp;
+	t_node	*temp;
 
-	(*count)++;
 	if (dequeisempty(a))
 		return ;
-	temp = dqgetlast(a);
-	dqremovelast(a);
-	dqaddlast(b, temp);
+	(*count)++;
 	ft_putstr_fd(str, 1);
+	temp = a->tail;
+	if (size(a) == 1)
+	{
+		a->head = NULL;
+		a->tail = NULL;
+	}
+	else
+	{
+		a->tail = a->tail->prev;
+		a->tail->next = NULL;
+	}
+	if (dequeisempty(b))
+	{
+		b->head = temp;
+		b->tail = temp;
+		return ;
+	}
+	link_to_b(b, temp);
 }
 
-int	rotate(t_deque *deq, char *str, int	*count)
+void	link_to_b(t_deque *b, t_node *temp)
 {
-	int	temp;
+	temp->prev = b->tail;
+	b->tail->next = temp;
+	b->tail = temp;
+}
+
+void	rotate(t_deque *deq, char *str, int	*count)
+{
+	t_node	*temp;
 
 	(*count)++;
 	if (dequeisempty(deq) || deq_len(deq) == 1)
-		return (1);
-	temp = dqgetlast(deq);
-	if (!dqaddfirst(deq, temp))
-		return (0);
-	dqremovelast(deq);
+		return ;
 	ft_putstr_fd(str, 1);
-	return (1);
+	temp = deq->tail;
+	deq->tail = temp->prev;
+	deq->tail->next = NULL;
+	temp->prev = NULL;
+	temp->next = deq->head;
+	deq->head->prev = temp;
+	deq->head = temp;
 }
 
 int	reverse_rotate(t_deque *deq, char *str)
@@ -64,22 +88,4 @@ int	reverse_rotate(t_deque *deq, char *str)
 	dqremovefirst(deq);
 	ft_putstr_fd(str, 1);
 	return (1);
-}
-
-int	size(t_deque *pdeq)
-{
-	int		count;
-	t_node	*temp;
-
-	count = 1;
-	temp = pdeq->head;
-	if (dequeisempty(pdeq))
-		return (0);
-	while (pdeq->head != pdeq->tail)
-	{
-		count++;
-		pdeq->head = pdeq->head->next;
-	}
-	pdeq->head = temp;
-	return (count);
 }

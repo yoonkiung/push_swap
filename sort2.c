@@ -57,13 +57,7 @@ void	pushonlyleast(t_deque *a, t_deque *b)
 void	lenisthree(t_deque *a, t_deque *b)
 {
 	int	empty;
-	int	first;
-	int	second;
-	int	third;
 
-	first = a->tail->data;
-	second = a->tail->prev->data;
-	third = a->tail->prev->prev->data;
 	empty = 0;
 	if (already_sorted(a, 3, 1))
 		return ;

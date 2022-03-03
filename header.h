@@ -77,7 +77,9 @@ void	swap(t_deque *pdeq, char *str);
 
 void	push(t_deque *a, t_deque *b, char *str, int *count);
 
-int		rotate(t_deque *deq, char *str, int	*count);
+void	link_to_b(t_deque *b, t_node *temp);
+
+void	rotate(t_deque *deq, char *str, int	*count);
 
 int		reverse_rotate(t_deque *deq, char *str);
 

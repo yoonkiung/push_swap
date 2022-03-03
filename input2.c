@@ -17,7 +17,6 @@ void	when_error(t_deque *a, t_deque *b)
 	ft_putstr_fd("Error\n", 1);
 	dqfreeall(a);
 	dqfreeall(b);
-	//system("leaks push_swap > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
 	exit(1);
 }
 
@@ -53,14 +52,21 @@ int	input_ac_is_1(char **av, t_deque *deq)
 {
 	char	**split;
 	int		i;
+	int		index;
 
+	index = 0;
 	i = 0;
 	split = ft_split(av[1], "\t\n\v\f\r ");
 	if (!split)
+	{
+		dqfreeall(deq);
 		return (0);
+	}
 	while (split[i])
 		i++;
 	i = put_deq(i, split, deq);
+	while (split[index])
+		free(split[index++]);
 	free(split);
 	return (i);
 }

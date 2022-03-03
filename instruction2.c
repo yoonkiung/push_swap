@@ -30,3 +30,21 @@ int	reverse_rotate_double(t_deque *a, t_deque *b, char *str)
 	ft_putstr_fd(str, 1);
 	return (1);
 }
+
+int	size(t_deque *pdeq)
+{
+	int		count;
+	t_node	*temp;
+
+	count = 1;
+	temp = pdeq->head;
+	if (dequeisempty(pdeq))
+		return (0);
+	while (pdeq->head != pdeq->tail)
+	{
+		count++;
+		pdeq->head = pdeq->head->next;
+	}
+	pdeq->head = temp;
+	return (count);
+}
