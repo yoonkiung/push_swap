@@ -117,7 +117,11 @@ void	do_instruct_b(t_deque *a, t_deque *b, int len);
 
 int		is_all_big(t_deque *deq, int big_pivot, int len);
 
-int		push_and_rotate_if(t_deque *a, t_deque *b, int *rb, int small_pivot);
+int		push_and_rotate_if_a(t_deque *a, t_deque *b, int *rb, int small_pivot);
+
+int		push_and_rotate_if_b(t_deque *a, t_deque *b, int *ra, int big_pivot);
+
+int		is_all_small(t_deque *deq, int small_pivot, int len);
 
 void	pushonlymax(t_deque *a, t_deque *b);
 

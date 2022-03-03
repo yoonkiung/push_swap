@@ -28,7 +28,7 @@ int	is_all_big(t_deque *deq, int big_pivot, int len)
 	return (1);
 }
 
-int	push_and_rotate_if(t_deque *a, t_deque *b, int *rb, int small_pivot)
+int	push_and_rotate_if_a(t_deque *a, t_deque *b, int *rb, int small_pivot)
 {
 	int	empty;
 
@@ -36,5 +36,32 @@ int	push_and_rotate_if(t_deque *a, t_deque *b, int *rb, int small_pivot)
 	push(a, b, "pb\n", &empty);
 	if (dqgetlast(b) >= small_pivot)
 		rotate(b, "rb\n", rb);
+	return (1);
+}
+
+int	is_all_small(t_deque *deq, int small_pivot, int len)
+{
+	t_node	*temp;
+	int		empty;
+
+	empty = 0;
+	temp = deq->tail;
+	while (len-- > 0)
+	{
+		if (temp->data >= small_pivot)
+			return (0);
+		temp = temp->prev;
+	}
+	return (1);
+}
+
+int	push_and_rotate_if_b(t_deque *a, t_deque *b, int *ra, int big_pivot)
+{
+	int	empty;
+
+	empty = 0;
+	push(b, a, "pa\n", &empty);
+	if (dqgetlast(a) < big_pivot)
+		rotate(a, "ra\n", ra);
 	return (1);
 }

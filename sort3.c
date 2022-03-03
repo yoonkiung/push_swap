@@ -78,7 +78,7 @@ void	do_instruct_a(t_deque *a, t_deque *b, int len)
 				break ;
 		}
 		else
-			pb += push_and_rotate_if(a, b, &rb, small_pivot);
+			pb += push_and_rotate_if_a(a, b, &rb, small_pivot);
 	}
 	do_reverse(a, b, ra, rb);
 	q_sort_a(a, b, ra + len + 1);
@@ -100,16 +100,17 @@ void	do_instruct_b(t_deque *a, t_deque *b, int len)
 	while (len-- > 0)
 	{
 		if (dqgetlast(b) < small_pivot)
-			rotate(b, "rb\n", &rb);
-		else
 		{
-			push(b, a, "pa\n", &pa);
-			if (dqgetlast(a) < big_pivot)
-				rotate(a, "ra\n", &ra);
+			if (!is_all_small(b, small_pivot, len + 1))
+				rotate(b, "rb\n", &rb);
+			else
+				break ;
 		}
+		else
+			pa += push_and_rotate_if_b(a, b, &ra, big_pivot);
 	}
 	q_sort_a(a, b, pa - ra);
 	do_reverse(a, b, ra, rb);
 	q_sort_a(a, b, ra);
-	q_sort_b(a, b, rb);
+	q_sort_b(a, b, rb + len + 1);
 }
