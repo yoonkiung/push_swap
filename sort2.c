@@ -57,8 +57,16 @@ void	pushonlyleast(t_deque *a, t_deque *b)
 void	lenisthree(t_deque *a, t_deque *b)
 {
 	int	empty;
+	int	first;
+	int	second;
+	int	third;
 
+	first = a->tail->data;
+	second = a->tail->prev->data;
+	third = a->tail->prev->prev->data;
 	empty = 0;
+	if (already_sorted(a, 3, 1))
+		return ;
 	if (size(a) == 3)
 	{
 		lenisthree_init(a);
@@ -105,6 +113,8 @@ void	lenisfive(t_deque *a, t_deque *b)
 	int	i;
 	int	empty;
 
+	if (already_sorted(a, 5, 1))
+		return ;
 	empty = 0;
 	i = 0;
 	min = find_min_max(a, 0, 5);

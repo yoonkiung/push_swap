@@ -1,0 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort5.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/04 01:06:25 by kiyoon            #+#    #+#             */
+/*   Updated: 2022/03/04 01:06:32 by kiyoon           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "header.h"
+
+int	is_all_big(t_deque *deq, int big_pivot, int len)
+{
+	t_node	*temp;
+	int		empty;
+
+	empty = 0;
+	temp = deq->tail;
+	while (len-- > 0)
+	{
+		if (temp->data < big_pivot)
+			return (0);
+		temp = temp->prev;
+	}
+	return (1);
+}
+
+int	push_and_rotate_if(t_deque *a, t_deque *b, int *rb, int small_pivot)
+{
+	int	empty;
+
+	empty = 0;
+	push(a, b, "pb\n", &empty);
+	if (dqgetlast(b) >= small_pivot)
+		rotate(b, "rb\n", rb);
+	return (1);
+}

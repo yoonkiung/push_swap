@@ -42,7 +42,7 @@ int	rotate(t_deque *deq, char *str, int	*count)
 	int	temp;
 
 	(*count)++;
-	if (dequeisempty(deq) || deq->head == deq->tail)
+	if (dequeisempty(deq) || deq_len(deq) == 1)
 		return (1);
 	temp = dqgetlast(deq);
 	if (!dqaddfirst(deq, temp))

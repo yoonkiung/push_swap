@@ -91,6 +91,8 @@ void	q_sort_a(t_deque *a, t_deque *b, int len);
 
 void	q_sort_b(t_deque *a, t_deque *b, int len);
 
+void	lenisthree_in_b(t_deque *a, t_deque *b);
+
 void	push_iter(t_deque *from, t_deque *to, char *str, int count);
 
 void	lenistwo(t_deque *a, char *str, int dep);
@@ -112,6 +114,10 @@ void	init_variable(int *a, int *b, int *c);
 void	do_instruct_a(t_deque *a, t_deque *b, int len);
 
 void	do_instruct_b(t_deque *a, t_deque *b, int len);
+
+int		is_all_big(t_deque *deq, int big_pivot, int len);
+
+int		push_and_rotate_if(t_deque *a, t_deque *b, int *rb, int small_pivot);
 
 void	pushonlymax(t_deque *a, t_deque *b);
 

@@ -118,5 +118,5 @@ void	lenisthree_init(t_deque *a)
 			swap(a, "sa\n");
 	}
 	else
-		swap(a, "sa\n");
+		lenistwo(a, "sa\n", 1);
 }

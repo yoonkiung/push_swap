@@ -62,6 +62,11 @@ void	q_sort_b(t_deque *a, t_deque *b, int len)
 		push_iter(b, a, "pa\n", len);
 		return ;
 	}
+	if (size(b) == 3)
+	{
+		lenisthree_in_b(a, b);
+		return ;
+	}
 	if (len <= 2)
 	{
 		if (len == 2)
@@ -71,14 +76,36 @@ void	q_sort_b(t_deque *a, t_deque *b, int len)
 		}
 		else if (len == 1)
 			push(b, a, "pa\n", &empty);
-		else if (len == 3)
-		{
-			lenisthree_reverse(a, b);
-			push_iter(b, a, "pa\n", 3);
-		}
 		return ;
 	}
 	do_instruct_b(a, b, len);
+}
+
+void	lenisthree_in_b(t_deque *a, t_deque *b)
+{
+	int	empty;
+
+	empty = 0;
+	if (find_min_max(b, 1, 3) == b->tail->data)
+	{
+		push(b, a, "pa\n", &empty);
+		lenistwo(b, "sb\n", 0);
+		push_iter(b, a, "pa\n", 2);
+	}
+	else if (find_min_max(b, 1, 3) == b->tail->prev->data)
+	{
+		rotate(b, "rb\n", &empty);
+		push(b, a, "pa\n", &empty);
+		lenistwo(b, "sb\n", 0);
+		push_iter(b, a, "pa\n", 2);
+	}
+	else
+	{
+		reverse_rotate(b, "rrb\n");
+		push(b, a, "pa\n", &empty);
+		lenistwo(b, "sb\n", 0);
+		push_iter(b, a, "pa\n", 2);
+	}
 }
 
 void	push_iter(t_deque *from, t_deque *to, char *str, int count)
