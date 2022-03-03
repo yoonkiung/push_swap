@@ -94,3 +94,29 @@ int	already_sorted(t_deque *deq, int len, int dep)
 	}
 	return (1);
 }
+
+void	lenisthree_init(t_deque *a)
+{
+	int	empty;
+	int	max;
+
+	if (already_sorted(a, 3, 1))
+		return ;
+	empty = 0;
+	max = find_min_max(a, 1, 3);
+	if (a->tail->data == max)
+	{
+		rotate(a, "ra\n", &empty);
+		if (!already_sorted(a, 3, 1))
+			swap(a, "sa\n");
+		return ;
+	}
+	else if (a->tail->prev->data == max)
+	{
+		reverse_rotate(a, "rra\n");
+		if (!already_sorted(a, 3, 1))
+			swap(a, "sa\n");
+	}
+	else
+		swap(a, "sa\n");
+}

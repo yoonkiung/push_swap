@@ -121,6 +121,10 @@ void	rotate_if_diff(t_deque *a, t_deque *b, int ra, int rb);
 
 int		already_sorted(t_deque *deq, int len, int dep);
 
+void	lenisthree_init(t_deque *a);
+
+int		find_next_min(t_deque *deq, int len, int min);
+
 void	swap_arr(int arr[], int a, int b);
 
 int		partition(int arr[], int left, int right);

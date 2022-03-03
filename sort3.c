@@ -12,20 +12,20 @@
 
 #include "header.h"
 
-void	sort_five_last(t_deque *a, t_deque *b)
+int	find_next_min(t_deque *deq, int len, int min)
 {
-	int	i;
-	int	empty;
+	int		next_min;
+	t_node	*temp;
 
-	empty = 0;
-	i = 0;
-	while (i++ < 3)
-		rotate(a, "ra\n", &empty);
-	push(b, a, "pa\n", &empty);
-	i = 0;
-	while (i++ < 3)
-		reverse_rotate(a, "rra\n");
-	push(b, a, "pa\n", &empty);
+	next_min = INT_MAX;
+	temp = deq->tail;
+	while (len-- > 0)
+	{
+		if (temp->data > min && next_min > temp->data)
+			next_min = temp->data;
+		temp = temp->prev;
+	}
+	return (next_min);
 }
 
 void	do_reverse(t_deque *a, t_deque *b, int ra, int rb)

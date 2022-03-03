@@ -17,6 +17,7 @@ void	when_error(t_deque *a, t_deque *b)
 	ft_putstr_fd("Error\n", 1);
 	dqfreeall(a);
 	dqfreeall(b);
+	//system("leaks push_swap > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
 	exit(1);
 }
 

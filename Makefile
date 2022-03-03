@@ -28,7 +28,7 @@ LIBC        = ar rc
 
 CC          = gcc
 
-CFLAGS      = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS      = -Wall -Wextra -Werror
 
 $(NAME) : $(OBJS)
 	make all -C $(LIBFT)/

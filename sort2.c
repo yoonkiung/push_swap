@@ -59,6 +59,11 @@ void	lenisthree(t_deque *a, t_deque *b)
 	int	empty;
 
 	empty = 0;
+	if (size(a) == 3)
+	{
+		lenisthree_init(a);
+		return ;
+	}
 	pushonlyleast(a, b);
 	lenistwo(a, "sa\n", 1);
 	push(b, a, "pa\n", &empty);
@@ -95,26 +100,27 @@ int	find_min_max(t_deque *a, int dep, int len)
 
 void	lenisfive(t_deque *a, t_deque *b)
 {
-	int	max;
+	int	next_min;
 	int	min;
 	int	i;
 	int	empty;
 
 	empty = 0;
 	i = 0;
-	max = find_min_max(a, 1, 5);
 	min = find_min_max(a, 0, 5);
+	next_min = find_next_min(a, 5, min);
 	while (i++ < 5)
 	{
-		if (a->tail->data == min || a->tail->data == max)
+		if (a->tail->data == min || a->tail->data == next_min)
 			push(a, b, "pb\n", &empty);
 		else
 			rotate(a, "ra\n", &empty);
 	}
 	i = 0;
-	while (i++ < 3)
-		reverse_rotate(a, "rra\n");
+	if (size(a) > 3)
+		while (i++ < 3)
+			reverse_rotate(a, "rra\n");
 	lenistwo(b, "sb\n", 0);
 	lenisthree(a, b);
-	sort_five_last(a, b);
+	push_iter(b, a, "pa\n", 2);
 }
