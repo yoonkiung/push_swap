@@ -50,7 +50,8 @@ FILES = ft_isalpha \
 		ft_putchar_fd \
 		ft_putendl_fd \
 		ft_putnbr_fd \
-		ft_putstr_fd
+		ft_putstr_fd \
+		get_next_line \
 
 FILES_B = 	ft_lstnew \
 	  		ft_lstsize \

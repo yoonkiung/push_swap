@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   instruction2_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/02 12:10:58 by kiyoon            #+#    #+#             */
-/*   Updated: 2022/03/02 12:24:27 by kiyoon           ###   ########.fr       */
+/*   Created: 2022/02/27 09:58:32 by kiyoon            #+#    #+#             */
+/*   Updated: 2022/02/27 09:58:35 by kiyoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av)
+int	reverse_rotate_double_bonus(t_deque *a, t_deque *b)
 {
-	t_deque	deq_a;
-	t_deque	deq_b;
+	int	temp;
 
-	if (!input(ac, av, &deq_a))
+	if (dequeisempty(a) || a->head == a->tail
+		|| dequeisempty(b) || b->head == b->tail)
+		return (1);
+	temp = dqgetfirst(a);
+	if (!dqaddlast(a, temp))
 		return (0);
-	dequeinit(&deq_b);
-	if (!is_all_diff(&deq_a))
-		when_error(&deq_a, &deq_b);
-	q_sort_a(&deq_a, &deq_b, size(&deq_a));
-	dqfreeall(&deq_a);
-	dqfreeall(&deq_b);
-	return (0);
+	dqremovefirst(a);
+	temp = dqgetfirst(b);
+	if (!dqaddlast(b, temp))
+		return (0);
+	dqremovefirst(b);
+	return (1);
 }

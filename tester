@@ -18,4 +18,4 @@ echo "========================"
 ./push_swap $ARG
 ./push_swap $ARG | wc -l
 
-./push_swap $ARG | ./checker_Mac $ARG
+./push_swap $ARG | ./checker $ARG

@@ -46,16 +46,17 @@ int	check_error(char *str)
 	return (1);
 }
 
-int	input(int ac, char **av, t_deque *deq)
+int	input(int ac, char **av, t_deque *a, t_deque *b)
 {
+	dequeinit(b);
 	if (ac == 2)
 	{
-		if (!input_ac_is_1(av, deq))
+		if (!input_ac_is_1(av, a))
 			return (0);
 	}
 	else
 	{
-		if (!input_normal_case(ac, av, deq))
+		if (!input_normal_case(ac, av, a))
 			return (0);
 	}
 	return (1);

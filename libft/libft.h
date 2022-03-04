@@ -16,6 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 40
+# endif
 
 typedef struct s_list
 {
@@ -108,5 +113,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 t_list	*ft_lstmap(t_list *lst, void *(f)(void *), void (*del)(void *));
+
+char	*makestr(char **s, int byte);
+
+int		this_is_first(char **s);
+
+char	*get_next_line(int fd);
+
+int		isin(char *str, char c);
 
 #endif

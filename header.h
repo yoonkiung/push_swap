@@ -38,7 +38,7 @@ int		isin_dec(char *str);
 
 int		check_error(char *str);
 
-int		input(int ac, char **av, t_deque *deq);
+int		input(int ac, char **av, t_deque *a, t_deque *b);
 
 int		is_all_diff(t_deque *deq);
 
@@ -83,6 +83,16 @@ void	rotate(t_deque *deq, char *str, int	*count);
 int		reverse_rotate(t_deque *deq, char *str);
 
 int		reverse_rotate_double(t_deque *a, t_deque *b, char *str);
+
+void	swap_bonus(t_deque *pdeq);
+
+void	push_bonus(t_deque *a, t_deque *b);
+
+void	rotate_bonus(t_deque *deq);
+
+int		reverse_rotate_bonus(t_deque *deq);
+
+int		reverse_rotate_double_bonus(t_deque *a, t_deque *b);
 
 int		size(t_deque *pdeq);
 
@@ -143,5 +153,27 @@ void	swap_arr(int arr[], int a, int b);
 int		partition(int arr[], int left, int right);
 
 void	quicksort(int arr[], int left, int right);
+
+int		check_instruction(char *str);
+
+void	is_sorted_and_print(t_deque *a, t_deque *b);
+
+void	launch(t_deque *a, t_deque *b, char *str);
+
+void	do_pa(t_deque *a, t_deque *b);
+
+void	do_pb(t_deque *a, t_deque *b);
+
+void	do_sa_sb(t_deque *deq);
+
+void	do_ss(t_deque *a, t_deque *b);
+
+void	do_ra_rb(t_deque *deq);
+
+void	do_rr(t_deque *a, t_deque *b);
+
+void	do_rra_rrb(t_deque *deq);
+
+void	do_rrr(t_deque *a, t_deque *b);
 
 #endif
