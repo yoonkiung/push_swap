@@ -72,10 +72,9 @@ void	do_instruct_a(t_deque *a, t_deque *b, int len)
 	{
 		if (dqgetlast(a) >= big_pivot)
 		{
-			if (!is_all_big(a, big_pivot, len + 1))
-				rotate(a, "ra\n", &ra);
-			else
+			if (is_all_big(a, big_pivot, len + 1))
 				break ;
+			rotate(a, "ra\n", &ra);
 		}
 		else
 			pb += push_and_rotate_if_a(a, b, &rb, small_pivot);

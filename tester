@@ -11,7 +11,7 @@ do
 done
 
 clear
-make re
+
 echo "========================"
 echo "Arguments : $ARG"
 echo "========================"
