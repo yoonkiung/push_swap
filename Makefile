@@ -6,7 +6,7 @@
 #    By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/08 11:12:01 by kiyoon            #+#    #+#              #
-#    Updated: 2022/02/17 14:30:59 by kiyoon           ###   ########.fr        #
+#    Updated: 2022/03/04 18:30:14 by kiyoon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBC        = ar rc
 
 CC          = gcc
 
-CFLAGS      = -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS      = -Wall -Wextra -Werror
 $(NAME) : $(OBJS)
 	make all -C $(LIBFT)/
 	mv $(LIBFT)/$(LIBFT_LIB) .

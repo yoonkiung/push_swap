@@ -6,7 +6,7 @@
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 12:00:52 by kiyoon            #+#    #+#             */
-/*   Updated: 2022/02/08 12:41:33 by kiyoon           ###   ########.fr       */
+/*   Updated: 2022/03/04 18:29:30 by kiyoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define HEADER_H
 
 # include "./libft/libft.h"
-# include <stdio.h>//need delete
 # include <limits.h>
 # define TRUE 1
 

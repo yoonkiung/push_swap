@@ -6,7 +6,7 @@
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 12:11:33 by kiyoon            #+#    #+#             */
-/*   Updated: 2022/03/02 12:11:35 by kiyoon           ###   ########.fr       */
+/*   Updated: 2022/03/04 18:23:21 by kiyoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	choose_pivot(t_deque *deq, int len, int *big_pivot, int *small_pivot)
 	}
 	quicksort(arr, 0, len - 1);
 	*small_pivot = arr[len / 3];
-	*big_pivot = arr[(len / 3) * 2];
+	*big_pivot = arr[2 * (len / 3)];
 	free(arr);
 	return (1);
 }
