@@ -70,7 +70,7 @@ void	do_instruct_a(t_deque *a, t_deque *b, int len)
 		when_error(a, b);
 	while (len-- > 0)
 	{
-		if (dqgetlast(a) >= big_pivot)
+		if (dqgetlast(a) > big_pivot)
 		{
 			if (is_all_big(a, big_pivot, len + 1))
 				break ;

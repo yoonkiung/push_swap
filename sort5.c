@@ -34,7 +34,7 @@ int	push_and_rotate_if_a(t_deque *a, t_deque *b, int *rb, int small_pivot)
 
 	empty = 0;
 	push(a, b, "pb\n", &empty);
-	if (dqgetlast(b) >= small_pivot)
+	if (dqgetlast(b) > small_pivot)
 		rotate(b, "rb\n", rb);
 	return (1);
 }
@@ -63,5 +63,16 @@ int	push_and_rotate_if_b(t_deque *a, t_deque *b, int *ra, int big_pivot)
 	push(b, a, "pa\n", &empty);
 	if (dqgetlast(a) < big_pivot)
 		rotate(a, "ra\n", ra);
+	return (1);
+}
+
+int	rotate_if_b(t_deque *b, int pb, int *rb, int small_pivot)
+{
+	if (size(b) == pb && is_all_big(b, small_pivot, pb))
+	{
+		(*rb)++;
+		return (0);
+	}
+	rotate(b, "rb\n", rb);
 	return (1);
 }
