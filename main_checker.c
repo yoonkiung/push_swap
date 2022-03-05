@@ -6,7 +6,7 @@
 /*   By: kiyoon <kiyoon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 18:54:12 by kiyoon            #+#    #+#             */
-/*   Updated: 2022/03/04 18:54:18 by kiyoon           ###   ########.fr       */
+/*   Updated: 2022/03/05 00:58:49 by kiyoon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	check_instruction(char *str)
 		return (1);
 	return (0);
 }
-#include <stdio.h>
+
 void	is_sorted_and_print(t_deque *a, t_deque *b)
 {
 	if (!dequeisempty(b))
